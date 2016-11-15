@@ -1,0 +1,24 @@
+Description
+function to return pathways consistently differentially expressed between two groups of fingerprints
+
+Usage
+diffPathways(fingerprints, fac, threshold)
+
+Arguments
+fingerprints - a matrix of fingerprints, the number of columns should correspond to the length of fac
+fac - vector of characters or factors, corresponding to the columns of fingerprint containing two levels denoting the groups to be compared. 
+threshold - a number indicating the threshold at which to assign an average difference in pathway usage. Can vary between 0 and 2.
+
+Details
+fac must contain only two levels. 
+
+Value
+Returns a list of the rownames (e.g. pathways for the pathway fingerprint) of the fingerprints matrix that correspond to the rows for which the difference in the means between the two groups is greater than the threshold value. For a ternary fingerprint (-1,0,1), setting the threshold between 0.5 and 1 ensures that rownames are selected the majority of the arrays in the two groups differ, with values closer to 1 representing higher stringency. This can break down and allow false positives in the case where one group contains a significant but minority number of +1 and the other -1s.
+
+See Also
+exprs2fingerprint, consensusFingerprint
+
+Examples
+
+
+

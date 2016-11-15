@@ -1,0 +1,43 @@
+Description
+Create a pathway fingerprint directly from a GEO accession number. 
+
+Usage
+geo2fingerprint(GSM, GEOpath, geneset,
+		enrichmentMethod = c("SCG", "SCE"),
+		transformation = c("rank", "squared.rank", "log.rank"),
+		statistic = c("mean", "median"),
+		normalizedScore, progressBar)
+
+Arguments
+GSM	GEO reference ID (GSM)
+GEOpath	path for storing downloaded GEO files
+geneset	either a list containing of named vectors of entrez gene ids corresponding to pathways or "KEGG and Wikipathways and static" (default) for a combination of KEGG, wikipathways and static modules
+enrichmentMethod	algorithm used to calculate gene enrichment score, one of "SCG" for single.chip.GSEA or "SCE for single.chip.enrichment, default is "SCG"
+statistic	"mean" or "median" - summary statistic to be applied if enrichmentMethod is single.chip.enrichment, default is "mean"
+normalizedScore	if enrichmentMethod is single.chip.enrichment and statistic = "mean" uses parametric method to assign a significance score, default is FALSE
+progressBar	if enrichmentMethod is single.chip.enrichment shows progress of script, set to FALSE for possible faster running, default is TRUE
+
+Details
+The function 'getGEO' within the package 'GEOquery' is used to download a table of expression values for a single array in GEO for a given GSM ID.
+This array is annotated with Entrez Gene IDs using customCDF annotations (Evolving Gene/Transcript Definitions Significantly Alter the Interpretation of GeneChip Data. Nucleic Acid Research 33 (20), e175O, http://brainarray.mbni.med.umich.edu/Brainarray/Database/CustomCDF/genomic_curated_CDF.asp), using the function 'annotate'.
+
+See help pages on exprs2fingerprint for details on the enrichment algorithms and associated arguments.
+
+Value
+Returns a list containing elements 'SCG', 'platform' and 'species'
+'SCG' returns a dataframe with a single column, 'expression', a numeric vector of the expression of each pathway in the list 'geneset' in the array relative to the GEO corpus.
+'Platform' returns a character vector of the GEO reference of the array platform used
+'Species' returns a character vector of the species used in the experiment
+
+See Also
+exprs2fingerprint, customCDFAnn
+
+Examples
+
+library(pathwayFingerprint)
+
+# compile a single fingerprint
+GSM18427.fingerprint<-geo2fingerprint("GSM18427", GEOpath = tempdir())
+
+# compile fingerprints for a set of arrays
+# TO GO IN HERE - A SIMPLE LINEAGE

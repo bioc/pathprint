@@ -1,0 +1,32 @@
+Description
+Calculates distance from a consensus fingerprint, accounting only for significant (-1 or 1) pathways in the consensus
+
+Usage
+consensusDistance(consensus, fingerprintframe)
+
+Arguments
+consensus - consensus fingerprint
+fingerprintframe - dataframe of fingerprints from which the distance will be calculated
+
+Value
+Distance - vector with names = colnames(fingerprintFrame) scaled by max distance (2 x length of the consensus) 
+P-value - p-value, based on an assumption of a normally distributed fingerprintframe
+
+
+Usage
+
+# load fingerprint matrix and pluripotent reference
+data(GEO.fingerprint.matrix)
+data(pluripotents.frame)
+
+# create consensus fingerprint
+pluripotent.consensus<-consensusFingerprint(GEO.fingerprint.matrix[,pluripotents.frame$GSM], threshold=0.9)
+
+# calculate distance from the pluripotent consensus
+geo.pluripotentDistance<-consensusDistance(pluripotent.consensus, GEO.fingerprint.matrix)
+
+# plot histograms
+par(mfcol = c(2,1), mar = c(0, 4, 4, 2))
+geo.pluripotentDistance.hist<-hist(geo.pluripotentDistance[,"distance"], nclass = 50, xlim = c(0,1), main = "Distance from pluripotent consensus")
+par(mar = c(7, 4, 4, 2))
+hist(geo.pluripotentDistance[pluripotents.frame$GSM, "distance"],breaks = geo.pluripotentDistance.hist$breaks, xlim = c(0,1), main = "", xlab = "above: all GEO, below: pluripotent samples")
