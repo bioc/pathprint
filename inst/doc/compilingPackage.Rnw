@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{Sweave}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[tableposition=top]{caption}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[usenames]{color}
+\definecolor{midnightblue}{rgb}{0.098,0.098,0.439}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{xleftmargin=2em, fontshape=sl,formatcom=\color{midnightblue}}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=2em}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em}
+\fvset{listparameters={\setlength{\topsep}{0pt}}}
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
+\SweaveOpts{keep.source=TRUE, pdf.version=1.4, eps = FALSE}
+\begin{document}
+\title{Building the R package pathprint}
+\author{Gabriel Altschuler}
+\maketitle
+<<echo=false>>=
+options(width=60)
+#options(SweaveHooks=list(fig=function()
+#      par(mar=c(1.1, 1.1, 1.1, 1.1)))
+#        )
+options(continue=" ")
+@
+This document outlines the steps required to build or update the R package pathprint.
+\section{Loading the data}
+The first step is to load all the relevant files into the workspace. This includes the scripts to process a gene expression array to a pathway fingerprint, dataframes containing the annotation files, metadata and fingerprint database, and the pathway sets that define the fingerprint.
+<<data>>=
+# building pathprint R package
+scripts<-c("exprs2fingerprint",
+          "consensusDistance",
+          "consensusFingerprint",
+          "customCDFAnn",
+          "diffPathways",
+          "single.chip.enrichment",
+          "thresholdFingerprint",
+          "hyperPathway"
+          )
+data<-c("chipframe",
+        "GEO.fingerprint.matrix",
+        "GEO.metadata.matrix",
+        "platform.thresholds",
+        "pluripotents.frame",
+        "genesets"
+        )
+pathways<-c("pathprint.Ce.gs",
+            "pathprint.Dm.gs",
+            "pathprint.Dr.gs",
+            "pathprint.Hs.gs",
+            "pathprint.Mm.gs",
+            "pathprint.Rn.gs"
+            )
+
+dir <- "../"
+sapply(scripts, function(x){
+  source(paste(dir, "scripts/", x, ".R", sep = ""))})
+sapply(data, function(x){
+  load(paste(dir, "data/", x, ".RData", sep = ""), .GlobalEnv)})
+sapply(pathways, function(x){
+  load(paste(dir, "data/", x, sep = ""), .GlobalEnv)})
+@
+\section{Compile source package}
+The \verb@utils@ script \verb@package.skeleton@ compiles all workspace objects into a new package. The argument \verb@force = TRUE@ specifies that the previous package directory is overwritten if it exists.
+<<compilePackage>>=
+packageName<-"pathprint"
+package.skeleton(list = c(scripts, data, pathways),
+                 name = packageName, force = TRUE,
+                 path = paste(dir, "package", sep = "")
+                 )
+@
+\section{Build package}
+Each object in an R package is described by a man file, this contains information on the type of object and any additional text that will appear in the help page. The next step is to edit these man files. Even for a help-file free version, some editing is still required to remove a dummy line inserted into the description file without which the package will not compile. A quick fix using a shell script to strip out the problematic lines is sufficient for an initial build. A complete package requires a manual edit of each man file.
+\\ Some additional points to consider
+\begin{itemize}
+\item To facilitate subsequent builds it is useful to keep a set of man files in a separate master directory, along with the description and datalist files.
+\item The description file contains information that is read and used to build the package. Ensure that fields such as \verb@Version:@ number, \verb@Depends:@ (for extra packages that are required), and \verb@Suggests:@ (for extra packages only in the examples).
+\item The R function \verb@resaveRdaFiles@ from the \verb@tools@ package should be used to optimize the compression of all data objects prior to the final build step (N.B. compressing before runnning \verb@package.skeleton@ does not help as all files are loaded and then re-compressed using gzip). Switching the compression type from gzip to bzip2 or xz can dramatically reduce file sizes for some objects. Note that this is a time consuming step and also requires that the line \verb@Depends: R (>= 2.10)@ is included in the \verb@DESCRIPTION@ file.
+\item In order to pass all tests run by \verb@R CMD check@ all objects must be ASCII encoded. Other encodings can be switched using the function \verb@iconv@.
+\item In addition, \verb@check@ does not like objects being called using \verb@data()@ within scripts. As an alternative, use lazyloading of objects by specifying \verb@LazyData: yes@ in the \verb@DESCRIPTION@ file. This also requires a file named \verb@datalist@ to be added to the data directory that contains the names of all objects to be lazyloaded.
+\item If a Windows binary file is required and there is no access to a Windows machine, use the upload service,  \url{http://win-builder.r-project.org/}.
+\end{itemize}
+
+<<build>>=
+# Edit man files
+wd<-getwd()
+setwd(paste(dir, "package/", packageName, "/man", sep = ""))
+man<-dir()
+man<-man[-grep("package.Rd", man)]
+for (i in 1:length(man)){
+  code<-paste("sh ", "../../../scripts/mansimple.sh " , man[i], sep = "")
+  system(code)
+}
+# alternative is to copy the man files from the manfiles dir
+man<-dir()
+for (i in 1:length(man)){
+  code<-paste("cp ../../", packageName,
+              "_masterFiles/manFiles/", man[i],
+              " ", man[i], sep = "")
+  system(code)
+  }
+
+# Add description and datalist files from master directory
+system(paste("cp ../../", packageName,
+             "_masterFiles/DESCRIPTION ../DESCRIPTION", sep = ""))
+system(paste("cp ../../", packageName,
+             "_masterFiles/datalist ../data/datalist", sep = ""))
+             
+# Build package
+setwd(wd)
+setwd("../package")
+# Remove placeholder
+system(paste("rm ",packageName, "/Read-and-delete-me", sep = ""))
+# Add in the a manual compiled by collating all the Rd files
+system(paste("R CMD Rd2pdf ",packageName, sep = ""))
+system(paste("mkdir ", packageName, "/inst", sep = ""))
+system(paste("mkdir ", packageName, "/inst/doc", sep = ""))
+system(paste("mv ",packageName, ".pdf ", packageName, "/inst/doc/",
+             packageName, ".pdf", sep = ""))
+# Include index html file that references the manual (and any other docs)
+system(paste("cp ", packageName, "_masterFiles/index.html ",
+             packageName, "/inst/doc/index.html", sep = ""))
+# Re-compress data files (this step takes time)
+library(tools)
+resaveRdaFiles(paste(packageName, "/data", sep = ""))
+# Build the package
+system(paste("R CMD build ", packageName, sep = ""))
+
+# The package can also be tested (this step takes even more time)
+system(paste("R CMD check ", packageName, sep = ""))
+setwd(wd)
+@
+<<Install local>>=
+# install.packages(
+# "/home/galtschu2/fingerprint/package/pathprint.v0.3.beta4_1.0.tar.gz",
+# lib = .libPaths()[3], repos = NULL, type = "source")
+# OR
+# install.packages(
+# "/home/galtschu2/Documents/Databases/Rpackages/pathprint_1.1.2.tar.gz",
+# lib = .libPaths()[3], repos = NULL, type = "source")
+
+@
+\end{document}
