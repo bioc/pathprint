@@ -4,7 +4,7 @@ Title: Pathway fingerprinting for analysis of gene expression arrays
 Description: Algorithms to convert a gene expression array provided as an expression table or a GEO reference to a 'pathway fingerprint', a vector of discrete ternary scores representing high (1), low(-1) or insignificant (0) expression in a suite of pathways.
 Author: Gabriel Altschuler, Uma Saxena
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
-Version: 0.99.8
+Version: 0.99.9
 Depends: R (>= 2.10)
 Suggests: ALL
 Date: 2012-06-14
