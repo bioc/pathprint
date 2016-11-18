@@ -6,7 +6,8 @@ Author: Gabriel Altschuler, Uma Saxena
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
 Version: 0.99.23
 Depends: R (>= 3.4)
-Suggests: ALL
+Suggests: ALL,GEOquery
+Encoding: UTF-8
 Date: 2012-06-14
 License: GPL
 LazyLoad: yes
