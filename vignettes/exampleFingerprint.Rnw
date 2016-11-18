@@ -17,7 +17,7 @@
 \SweaveOpts{keep.source=TRUE, pdf.version=1.4, eps = FALSE}
 \setkeys{Gin}{width=1.2\textwidth}
 \begin{document}
-\title{Pathway Fingerprinting - example script}
+\title{Pathway Fingerprinting: a working example}
 \author{Gabriel Altschuler}
 \maketitle
 <<echo=FALSE>>=
