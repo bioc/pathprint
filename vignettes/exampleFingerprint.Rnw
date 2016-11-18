@@ -24,7 +24,7 @@
 options(width=60, stringsAsFactors = FALSE)
 options(continue=" ")
 tpbEnv <- new.env()
-assign("cat", function(...) cat(file=stderr(),...), tpbEnv)
+assign("cat", function(file,...) cat(file=stderr(),...), tpbEnv)
 environment(txtProgressBar) <- tpbEnv
 @
 This document demonstrates how to use the \verb@pathprint@ package to analyze a dataset using Pathway Fingerprints. The pathprint package takes gene expression data and processes this into discrete expression scores (+1,0,-1) for a set of 633 pathways. For more information, see the \href{http://compbio.sph.harvard.edu/hidelab/pathprint/Pathprint/Pathway_Fingerprint.html}{pathprint website}.
