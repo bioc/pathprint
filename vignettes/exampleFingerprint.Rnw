@@ -64,7 +64,6 @@ all.equal(GSE26946.existing, GSE26946.fingerprint)
 \subsection{Intra-sample comparisons}
 The fingerprint vectors can be used to compare the differntially expressed functions within the sample set. The most straight forward method to represent this is using a heatmap, removing rows for which there is no change in functional expression.
 <<heatmap, include = FALSE>>=
-dev.off()
 heatmap(GSE26946.fingerprint[apply(GSE26946.fingerprint, 1, sd) > 0, ],
         labCol = GSE26946.names,
         mar = c(10,10),
