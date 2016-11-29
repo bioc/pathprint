@@ -63,18 +63,13 @@ annotation(ALL)
 # The chip used was the Affymetrix Human Genome U95 Version 2 Array
 # The correspending GEO ID is GPL8300
 
-# Extract portion of the expression matrix
-ALL.exprs<-exprs(ALL)
-ALL.exprs.sub<-ALL.exprs[,1:5]
-
-# Process fingerprints
-ALL.fingerprint<-exprs2fingerprint(exprs = ALL.exprs.sub,
-	platform = "GPL8300",
-	species = "human",
-	progressBar = TRUE
+# Extract portion of the expression matrix and process fingerprints
+ALL.First5.fingerprint<-exprs2fingerprint(exprs = ALL[1:5],
+    platform = "GPL8300",
+    species = "human",
+    progressBar = TRUE
 )
-
-head(ALL.fingerprint)									   
+head(ALL.First5.fingerprint)								   
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
