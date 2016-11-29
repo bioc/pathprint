@@ -13,6 +13,9 @@ function(exprs, platform, species, progressBar = TRUE)
 # Species can be "mouse" or "human"
 # Updated for v0.3
   {
+	if(class(exprs) == "ExpressionSet"){
+    		exprs = exprs(exprs)
+	}
 
 #######
 # Load data and check parameters
