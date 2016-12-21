@@ -5,7 +5,7 @@ Description: Algorithms to convert a gene expression array provided as an expres
 Author: Gabriel Altschuler, Uma Saxena
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
 Version: 0.99.24
-Depends: R (>= 3.4)
+Depends: R (>= 3.4), pathprintGEOdata
 Suggests: ALL,GEOquery
 Encoding: UTF-8
 Date: 2012-06-14
