@@ -5,12 +5,9 @@ Description: Algorithms to convert a gene expression array provided as an expres
 Author: Gabriel Altschuler, Uma Saxena
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
 Version: 0.99.24
-Depends: R (>= 3.4), pathprintGEOdata
+Depends: R (>= 3.4), pathprintGEOData
 Suggests: ALL,GEOquery
 Encoding: UTF-8
 Date: 2012-06-14
 License: GPL
-LazyLoad: yes
-LazyData: yes
-Packaged: 2012-06-14 15:08:12 UTC; GabrielAltschuler
 biocViews: Transcription, GeneExpression, KEGG, Reactome
