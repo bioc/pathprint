@@ -24,7 +24,7 @@ LazyLoad: \tab yes\cr
 }
 \author{
 Gabriel Altschuler, Uma Saxena.
-\cr Maintainer: Gabriel Altschuler \email{galtschu@hsph.harvard.edu}
+\cr Maintainer: Sokratis Kariotis \email{s.kariotis@sheffield.ac.uk}
 }
 \references{
 Pathway activation mapping for large scale comparison of gene expression, 
