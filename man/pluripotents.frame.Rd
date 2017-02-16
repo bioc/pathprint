@@ -30,14 +30,14 @@ Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in 
 \code{\link{consensusDistance}}, \code{\link{consensusFingerprint}}
 }
 \examples{
-head(pluripotents.frame)
-
 ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
 GEO.fingerprint.matrix = assays(result)$fingerprint
 GEO.metadata.matrix = colData(result)
+
+head(pluripotents.frame)
 
 # Use pathway fingerprints to search for
 # additional pluripotent arrays across GEO
