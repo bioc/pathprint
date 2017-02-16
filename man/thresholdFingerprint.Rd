@@ -48,6 +48,13 @@ require(ALL)
 data(ALL)
 annotation(ALL)
 
+ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
+data(list = ds)
+
+# extract GEO.fingerprint.matrix and GEO.metadata.matrix
+GEO.fingerprint.matrix = assays(result)$fingerprint
+GEO.metadata.matrix = colData(result)
+
 # The chip used was the Affymetrix Human Genome U95 Version 2 Array
 # The correspending GEO ID is GPL8300
 

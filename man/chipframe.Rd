@@ -29,6 +29,7 @@ Chen R., Li L., and Butte AJ (2007) AILUN: Reannotating Gene Expression Data Aut
 }
 
 \examples{
+data(chipframe)
 names(chipframe)
 chipframe$GPL570$title
 head(chipframe$GPL570$ann)

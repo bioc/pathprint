@@ -23,6 +23,7 @@ Sayers et al. Database resources of the National Center for Biotechnology Inform
 Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
 }
 \examples{
+data("pathprint.Mm.gs")
 pathprint.Mm.gs[grep("ZN175_7728", names(pathprint.Mm.gs))]
 }
 \keyword{datasets}

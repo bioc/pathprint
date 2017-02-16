@@ -38,6 +38,13 @@ Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in 
 \code{\link{consensusFingerprint}}
 }
 \examples{
+ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
+data(list = ds)
+
+# extract GEO.fingerprint.matrix and GEO.metadata.matrix
+GEO.fingerprint.matrix = assays(result)$fingerprint
+GEO.metadata.matrix = colData(result)
+
 # search for pluripotent arrays
 # create consensus fingerprint for pluripotent samples
 pluripotent.consensus<-consensusFingerprint(

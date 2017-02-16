@@ -15,7 +15,11 @@ Gene sets were inferred by homology from the human genesets, \code{\link{pathpri
 \source{
 O. Hofmann
 }
+data("pathprint.Ce.gs")
 
+# extract GEO.fingerprint.matrix and GEO.metadata.matrix
+GEO.fingerprint.matrix = assays(result)$fingerprint
+GEO.metadata.matrix = colData(result)
 \references{
 Sayers et al. Database resources of the National Center for Biotechnology Information.
  Nucleic Acids Research (2011) vol. 39 (Database issue) pp. D38-51

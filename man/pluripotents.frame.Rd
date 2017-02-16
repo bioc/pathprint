@@ -32,6 +32,13 @@ Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in 
 \examples{
 head(pluripotents.frame)
 
+ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
+data(list = ds)
+
+# extract GEO.fingerprint.matrix and GEO.metadata.matrix
+GEO.fingerprint.matrix = assays(result)$fingerprint
+GEO.metadata.matrix = colData(result)
+
 # Use pathway fingerprints to search for
 # additional pluripotent arrays across GEO
 # create consensus pluripotent fingerprint
@@ -60,7 +67,7 @@ top.noSeed.meta<-GEO.metadata.matrix[
 	match(head(rownames(geo.pluripotentDistance.noSeed), 1000),
 	GEO.metadata.matrix$GSM),
 	]
-head(top.noSeed.meta[,c("GSM", "GPL", "Source")],10)
+# head(top.noSeed.meta[,c("GSM", "GPL", "Source")],10)
 
 }
 \keyword{datasets}

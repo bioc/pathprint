@@ -40,6 +40,12 @@ Gabriel Altschuler
 \code{\link{consensusDistance}}
 }
 \examples{
+ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
+data(list = ds)
+
+# extract GEO.fingerprint.matrix and GEO.metadata.matrix
+GEO.fingerprint.matrix = assays(result)$fingerprint
+GEO.metadata.matrix = colData(result)
 # search for pluripotent arrays
 # load fingerprint matrix and pluripotent reference
 
@@ -70,6 +76,6 @@ top.noSeed.meta<-GEO.metadata.matrix[
 	match(head(rownames(geo.pluripotentDistance.noSeed), 1000),
 	GEO.metadata.matrix$GSM),
 	]
-head(top.noSeed.meta[,c("GSM", "GPL", "Source")],10)
+# head(top.noSeed.meta[,c("GSM", "GPL", "Source")],10)
 }
 
