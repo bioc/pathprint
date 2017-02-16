@@ -13,6 +13,7 @@ Pathway activation mapping for large scale comparison of gene expression
 Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
 }
 \examples{
+data("genesets")
 genesets
 }
 \keyword{datasets}
