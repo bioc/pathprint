@@ -40,7 +40,9 @@ Gabriel Altschuler
 \code{\link{consensusDistance}}
 }
 \examples{
-ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
+ds = c("chipframe", "genesets","pathprint.Hs.gs",
+  "platform.thresholds","pathprintSummarizedGEOData",
+  "pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
