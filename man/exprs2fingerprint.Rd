@@ -1,5 +1,7 @@
 \name{exprs2fingerprint}
 \alias{exprs2fingerprint}
+\alias{GEO.fingerprint.matrix}
+\alias{GEO.metadata.matrix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Create a pathway fingerprint from a gene expression table.}
