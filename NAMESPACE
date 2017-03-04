@@ -1,0 +1,5 @@
+exportPattern( "." )
+import(pathprintGEOData)
+importFrom("stats", "aggregate", "median", "na.omit", "p.adjust",
+"phyper", "pnorm", "sd")
+importFrom("utils", "setTxtProgressBar", "txtProgressBar")
