@@ -46,6 +46,8 @@ Gabriel Altschuler
 \code{\link{exprs2fingerprint}}, \code{\link{consensusDistance}}, \code{\link{consensusFingerprint}}
 }
 \examples{
+require(pathprintGEOData)
+
 # Use ALL dataset as an example
 
 require(ALL)

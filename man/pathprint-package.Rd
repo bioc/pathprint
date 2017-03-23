@@ -35,6 +35,7 @@ Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in 
 \code{\link{exprs2fingerprint}}, \code{\link{consensusFingerprint}}, \code{\link{consensusDistance}}
 }
 \examples{
+require(pathprintGEOData)
 
 # Use fingerprints to analyze the ALL dataset
 require(ALL)

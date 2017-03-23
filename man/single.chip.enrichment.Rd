@@ -58,6 +58,7 @@ Gabriel Altschuler
 \code{\link{exprs2fingerprint}}
 }
 \examples{
+require(pathprintGEOData)
 
 # Compare continuous pathway enrichment values to Pathway Fingerprint scores
 

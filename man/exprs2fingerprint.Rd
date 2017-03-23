@@ -56,6 +56,7 @@ Gabriel Altschuler
  \code{\link{thresholdFingerprint}}
 }
 \examples{
+require(pathprintGEOData)
 
 # Use ALL dataset as an example
 require(ALL)

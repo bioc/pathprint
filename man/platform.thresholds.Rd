@@ -15,6 +15,8 @@ Pathway activation mapping for large scale comparison of gene expression
 Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
 }
 \examples{
+require(pathprintGEOData)
+
 data("platform.thresholds")
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix

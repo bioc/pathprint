@@ -40,6 +40,8 @@ Gabriel Altschuler
 \code{\link{consensusDistance}}
 }
 \examples{
+require(pathprintGEOData)
+
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
   "platform.thresholds","pathprintSummarizedGEOData",
   "pluripotents.frame")

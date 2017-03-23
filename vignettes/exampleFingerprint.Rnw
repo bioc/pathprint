@@ -61,6 +61,7 @@ GSE26946.names <- as.character(phenoData(GSE26946[[1]])$title)
 Now the data has been prepared, the \verb@pathprint@ function \verb@exprs2fingerprint@ can be used to produce a pathway fingerprint from this expression table.
 <<fingerprint>>=
 library(pathprint)
+library(pathprintGEOData)
 # load("chipframe.rda")
 ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
 data(list = ds)

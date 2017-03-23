@@ -30,6 +30,8 @@ Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in 
 \code{\link{consensusDistance}}, \code{\link{consensusFingerprint}}
 }
 \examples{
+require(pathprintGEOData)
+
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
   "platform.thresholds","pathprintSummarizedGEOData", 
   "pluripotents.frame")

@@ -38,6 +38,8 @@ Gabriel Altshuler
 \code{\link{exprs2fingerprint}}, \code{\link{platform.thresholds}}
 }
 \examples{
+require(pathprintGEOData)
+
 # Comparing workflows
 
 # 1. Pathway Fingerprint scores from exprs2fingerprint

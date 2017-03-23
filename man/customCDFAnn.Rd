@@ -38,6 +38,8 @@ Gabriel Altschuler
 \code{\link{chipframe}}, \code{\link{single.chip.enrichment}}
 }
 \examples{
+require(pathprintGEOData)
+
 # load ALL dataset
 require(ALL)
 data(ALL)

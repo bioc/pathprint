@@ -8,9 +8,9 @@ Description: Algorithms to convert a gene expression array provided as
         pathways.
 Author: Gabriel Altschuler, Uma Saxena
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
-Version: 0.99.35
-Depends: R (>= 3.4), pathprintGEOData
-Suggests: ALL,GEOquery
+Version: 0.99.36
+Depends: R (>= 3.4)
+Suggests: ALL, GEOquery, pathprintGEOData
 Imports: stats, utils
 Encoding: UTF-8
 License: GPL
