@@ -10,7 +10,7 @@ Author: Gabriel Altschuler, Uma Saxena
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
 Version: 0.99.36
 Depends: R (>= 3.4)
-Suggests: ALL, GEOquery, pathprintGEOData
+Suggests: ALL, GEOquery, pathprintGEOData, SummarizedExperiment
 Imports: stats, utils
 Encoding: UTF-8
 License: GPL
