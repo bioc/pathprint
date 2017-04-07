@@ -68,7 +68,7 @@ library(pathprintGEOData)
 data(compressed_result)
 
 # load("chipframe.rda")
-ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds","pathprintSummarizedGEOData", "pluripotents.frame")
+ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds", "pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
