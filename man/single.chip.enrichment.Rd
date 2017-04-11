@@ -59,6 +59,10 @@ Gabriel Altschuler
 }
 \examples{
 require(pathprintGEOData)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 
 # Compare continuous pathway enrichment values to Pathway Fingerprint scores
 
@@ -67,15 +71,6 @@ require(pathprintGEOData)
 require(ALL)
 data(ALL)
 annotation(ALL)
-
-#ds = c("chipframe", "genesets","pathprint.Hs.gs",
-#  "platform.thresholds","pathprintSummarizedGEOData", 
-#  "pluripotents.frame")
-#data(list = ds)
-
-## extract GEO.fingerprint.matrix and GEO.metadata.matrix
-#GEO.fingerprint.matrix = assays(result)$fingerprint
-#GEO.metadata.matrix = colData(result)
 
 ds = c("chipframe","pathprint.Hs.gs","genesets","platform.thresholds")
 data(list = ds)

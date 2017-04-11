@@ -39,6 +39,10 @@ Gabriel Altshuler
 }
 \examples{
 require(pathprintGEOData)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 
 # Comparing workflows
 
@@ -51,8 +55,7 @@ data(ALL)
 annotation(ALL)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pathprintSummarizedGEOData", 
-  "pluripotents.frame")
+  "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix

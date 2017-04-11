@@ -41,10 +41,13 @@ require(pathprintGEOData)
 require(ALL)
 data(ALL)
 annotation(ALL)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pathprintSummarizedGEOData", 
-  "pluripotents.frame")
+  "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix

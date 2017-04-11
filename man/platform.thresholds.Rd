@@ -16,7 +16,10 @@ Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in 
 }
 \examples{
 require(pathprintGEOData)
+library(SummarizedExperiment)
 
+# load  the data
+data(compressed_result)
 data("platform.thresholds")
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
