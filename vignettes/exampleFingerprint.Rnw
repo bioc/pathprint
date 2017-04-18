@@ -18,6 +18,7 @@
 \SweaveOpts{keep.source=TRUE, pdf.version=1.4, eps = FALSE}
 \setkeys{Gin}{width=1.2\textwidth}
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 \title{Pathway Fingerprinting: a working example}
 \author{Gabriel Altschuler}
 \maketitle
@@ -78,13 +79,13 @@ GEO.metadata.matrix = colData(result)
 GSE26946.fingerprint <- exprs2fingerprint(exprs = GSE26946.exprs,
                                           platform = GSE26946.platform,
                                           species = GSE26946.species,
-                                          progressBar = TRUE
+                                          progressBar = FALSE
                                           )
 
 GSE26946.fingerprint[1:5, 1:3]
 @
 \subsection{Using existing data}
-The pathprint package contains the object \verb@GEO.fingerprint.matrix@ which contains \Sexpr{ncol(GEO.fingerprint.matrix)} samples that have already been fingerprinted, along with their associated metadata, in the object \verb@GEO.metadata.matrix@. As the above data record is publically available from GEO it is actually already in the matrix and we can compare this to the fingerprint processed above. It should be noted that occasionally there may be discrepancies in one or two pathways due to the way in which the threshold is applied. Any existing GEO record not contained within the fingerprint matrix must either a) be on a chip that is not covered or b) have been uploaded to GEO in a not standard manner, normally with an incorrectly matched species name or an unusually small number or probes or feature IDs.
+The pathprint package uses the object \verb@compressed_result@, drawn from the data-package \verb@pathprintGEOData@, which was constructed in 2012 and does not contain all the GEO data. When uncompressed yields \verb@GEO.fingerprint.matrix@ and \verb@GEO.metadata.matrix@. \verb@GEO.fingerprint.matrix@ contains \Sexpr{ncol(GEO.fingerprint.matrix)} samples that have already been fingerprinted, along with their associated metadata, in the object \verb@GEO.metadata.matrix@. As the above data record is publically available from GEO it is actually already in the matrix and we can compare this to the fingerprint processed above. It should be noted that occasionally there may be discrepancies in one or two pathways due to the way in which the threshold is applied.
 <<existingFingerprint>>=
 colnames(GSE26946.exprs) %in% colnames(GEO.fingerprint.matrix)
 GSE26946.existing <- GEO.fingerprint.matrix[,colnames(GSE26946.exprs)]
@@ -153,9 +154,7 @@ GSE26946.H1<-consensusFingerprint(
 geo.H1Distance<-consensusDistance(
   GSE26946.H1, GEO.fingerprint.matrix)
 # look at top 20
-# GEO.metadata.matrix[
-#   match(head(rownames(geo.H1Distance),20), GEO.metadata.matrix$GSM),
-#   c("GSM", "GSE", "GPL", "Source")]
+GEO.metadata.matrix[match(head(rownames(geo.H1Distance),20), rownames(GEO.metadata.matrix)),c("GSE", "GPL", "Source")]
 @
 
 \end{document}

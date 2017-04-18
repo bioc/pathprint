@@ -6,13 +6,13 @@ Description: Algorithms to convert a gene expression array provided as
         fingerprint', a vector of discrete ternary scores representing
         high (1), low(-1) or insignificant (0) expression in a suite of
         pathways.
-Author: Gabriel Altschuler, Uma Saxena
+Author: Gabriel Altschuler
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
-Version: 0.99.39
+Version: 0.99.41
 Depends: R (>= 3.4)
 Suggests: ALL, GEOquery, pathprintGEOData, SummarizedExperiment
 Imports: stats, utils
 Encoding: UTF-8
-License: GPL
 biocViews: Transcription, GeneExpression, KEGG, Reactome
+License: MIT License
 RoxygenNote: 6.0.1
