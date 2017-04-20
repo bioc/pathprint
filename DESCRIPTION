@@ -8,11 +8,11 @@ Description: Algorithms to convert a gene expression array provided as
         pathways.
 Author: Gabriel Altschuler
 Maintainer: Sokratis Kariotis <s.kariotis@sheffield.ac.uk>
-Version: 0.99.41
+Version: 0.99.42
 Depends: R (>= 3.4)
 Suggests: ALL, GEOquery, pathprintGEOData, SummarizedExperiment
 Imports: stats, utils
 Encoding: UTF-8
 biocViews: Transcription, GeneExpression, KEGG, Reactome
-License: MIT License
+License: GPL
 RoxygenNote: 6.0.1

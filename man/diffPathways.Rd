@@ -36,8 +36,7 @@ Returns a list of the rownames (i.e. pathways for the pathway fingerprint)
  but minority number of +1 and the other -1s.
 }
 \references{
-Pathway activation mapping for large scale comparison of gene expression 
-Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
 }
 \author{
 Gabriel Altschuler
