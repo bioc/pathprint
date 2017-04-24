@@ -15,4 +15,4 @@ citEntry(entry="article",
     year = 2013,
     number = 5,
     pages ="68--81",
-    textVersion = paste("Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68."))
+    textVersion = "Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). Pathprinting: An integrative approach to understand the functional basis of disease. Genome Med 5(7): 68.")
