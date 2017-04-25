@@ -28,8 +28,7 @@ Returns a dataframe with a column for each column of the input data and rownames
  
 }
 \references{
-Pathway activation mapping for large scale comparison of gene expression 
-Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
 }
 \author{
 Gabriel Altschuler
@@ -38,14 +37,19 @@ Gabriel Altschuler
 \code{\link{chipframe}}, \code{\link{single.chip.enrichment}}
 }
 \examples{
+require(pathprintGEOData)
+
 # load ALL dataset
 require(ALL)
 data(ALL)
 annotation(ALL)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pathprintSummarizedGEOData", 
-  "pluripotents.frame")
+  "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix

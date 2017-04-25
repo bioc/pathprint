@@ -16,34 +16,36 @@ Algorithms to convert a gene expression array provided as an expression table to
 \tabular{ll}{
 Package: \tab pathprint\cr
 Type: \tab Package\cr
-Version: \tab 1.2.3\cr
-Date: \tab 2012-06-14\cr
+Version: \tab 1.2.5\cr
+Date: \tab 2012-04-19\cr
 License: \tab GPL\cr
-LazyLoad: \tab yes\cr
 }
 }
 \author{
-Gabriel Altschuler, Uma Saxena.
+Gabriel Altschuler
 \cr Maintainer: Sokratis Kariotis \email{s.kariotis@sheffield.ac.uk}
 }
 \references{
-Pathway activation mapping for large scale comparison of gene expression, 
-Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
 }
 \keyword{ package }
 \seealso{
 \code{\link{exprs2fingerprint}}, \code{\link{consensusFingerprint}}, \code{\link{consensusDistance}}
 }
 \examples{
+require(pathprintGEOData)
 
 # Use fingerprints to analyze the ALL dataset
 require(ALL)
 data(ALL)
 annotation(ALL)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pathprintSummarizedGEOData", 
-  "pluripotents.frame")
+  "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix

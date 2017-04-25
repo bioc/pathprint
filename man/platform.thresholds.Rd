@@ -11,10 +11,14 @@ Ternary threshold values for conversion of continuous geneset enrichment scores 
 \usage{platform.thresholds}
 
 \references{
-Pathway activation mapping for large scale comparison of gene expression 
-Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
 }
 \examples{
+require(pathprintGEOData)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 data("platform.thresholds")
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix

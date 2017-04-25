@@ -36,8 +36,7 @@ Returns a list of the rownames (i.e. pathways for the pathway fingerprint)
  but minority number of +1 and the other -1s.
 }
 \references{
-Pathway activation mapping for large scale comparison of gene expression 
-Altschuler G, Hofmann O, Payne R, Kalatskaya I, Stein L, Cai T, Hide W \emph{in preparation}
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
 }
 \author{
 Gabriel Altschuler
@@ -46,15 +45,20 @@ Gabriel Altschuler
 \code{\link{exprs2fingerprint}}, \code{\link{consensusDistance}}, \code{\link{consensusFingerprint}}
 }
 \examples{
+require(pathprintGEOData)
+
 # Use ALL dataset as an example
 
 require(ALL)
 data(ALL)
 annotation(ALL)
+library(SummarizedExperiment)
+
+# load  the data
+data(compressed_result)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pathprintSummarizedGEOData", 
-  "pluripotents.frame")
+  "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
