@@ -15,7 +15,7 @@
 \DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em, fontshape=sl,formatcom=\color{midnightblue}, fontsize=\small}
 \fvset{listparameters={\setlength{\topsep}{0pt}}}
 \renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
-\SweaveOpts{keep.source=TRUE, pdf.version=1.5.1, eps = FALSE}
+\SweaveOpts{keep.source=TRUE, pdf.version=1.4, eps = FALSE}
 \setkeys{Gin}{width=1.2\textwidth}
 \begin{document}
 \SweaveOpts{concordance=TRUE}

@@ -16,7 +16,7 @@ Algorithms to convert a gene expression array provided as an expression table to
 \tabular{ll}{
 Package: \tab pathprint\cr
 Type: \tab Package\cr
-Version: \tab 1.5.1\cr
+Version: \tab 1.5.2\cr
 Date: \tab 2017-04-25\cr
 License: \tab GPL\cr
 }
