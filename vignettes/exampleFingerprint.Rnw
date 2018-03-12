@@ -10,9 +10,12 @@
 \usepackage[usenames]{color}
 \definecolor{midnightblue}{rgb}{0.098,0.098,0.439}
 \definecolor{red}{rgb}{0.999,0.000,0.000}
-\DefineVerbatimEnvironment{Sinput}{Verbatim}{xleftmargin=2em, fontshape=sl,formatcom=\color{midnightblue}, fontsize=\small}
-\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=2em, fontshape=sl,formatcom=\color{red}, fontsize=\small}
-\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em, fontshape=sl,formatcom=\color{midnightblue}, fontsize=\small}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{xleftmargin=2em, fontshape=sl,
+formatcom=\color{midnightblue}, fontsize=\small}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=2em, fontshape=sl,
+formatcom=\color{red}, fontsize=\small}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em, fontshape=sl,
+formatcom=\color{midnightblue}, fontsize=\small}
 \fvset{listparameters={\setlength{\topsep}{0pt}}}
 \renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
 \SweaveOpts{keep.source=TRUE, pdf.version=1.4, eps = FALSE}
@@ -29,25 +32,72 @@ tpbEnv <- new.env()
 assign("cat", function(file,...) cat(file=stderr(),...), tpbEnv)
 environment(txtProgressBar) <- tpbEnv
 @
-This document demonstrates how to use the \verb@pathprint@ package to analyze a dataset using Pathway Fingerprints. The pathprint package takes gene expression data and processes this into discrete expression scores (+1,0,-1) for a set of 633 pathways. For more information, see the \href{http://compbio.sph.harvard.edu/hidelab/pathprint/Pathprint/Pathway_Fingerprint.html}{pathprint website}.
+This document demonstrates how to use the \verb@pathprint@ package to analyze a 
+dataset using Pathway Fingerprints. The pathprint package takes gene expression 
+data and processes this into discrete expression scores (+1,0,-1) for a set of 
+633 pathways. For more information, see the 
+\href{http://compbio.sph.harvard.edu/hidelab/pathprint/Pathprint/
+Pathway_Fingerprint.html}{pathprint website}.
 \tableofcontents
 \section{Summary}
-Systems-level descriptions of pathway activity across gene expression repositories are confounded by platform, species and batch effects. Pathprinting integrates pathway curation, profiling methods, and public repositories, to represent any expression profile as a ternary score (-1, 0, +1) in a standardized pathway panel. It provides annotation and a robust framework for global comparison of gene expression data.
+Systems-level descriptions of pathway activity across gene expression 
+repositories are confounded by platform, species and batch effects. Pathprinting
+integrates pathway curation, profiling methods, and public repositories, to 
+represent any expression profile as a ternary score (-1, 0, +1) in a 
+standardized pathway panel. It provides annotation and a robust framework for 
+global comparison of gene expression data.
 \section{Background}
-New strategies to combat complex human disease require systems approaches to biology that integrate experiments from cell lines, primary tissues and model organisms. We have developed Pathprint, a functional approach that compares gene expression profiles in a set of pathways, networks and transcriptionally regulated targets. It can be applied universally to gene expression profiles across species. Integration of large-scale profiling methods and curation of the public repository overcomes platform, species and batch effects to yield a standard measure of functional distance between experiments. A score of 0 in the final pathprint vector represents pathway expression at a similar level to the majority of arrays of the same platform in the GEO database, while scores of 1 and -1 reflect significantly high and low expression respectively. 
+New strategies to combat complex human disease require systems approaches to 
+biology that integrate experiments from cell lines, primary tissues and model 
+organisms. We have developed Pathprint, a functional approach that compares gene
+expression profiles in a set of pathways, networks and transcriptionally 
+regulated targets. It can be applied universally to gene expression profiles 
+across species. Integration of large-scale profiling methods and curation of the
+public repository overcomes platform, species and batch effects to yield a 
+standard measure of functional distance between experiments. A score of 0 in the
+final pathprint vector represents pathway expression at a similar level to the 
+majority of arrays of the same platform in the GEO database, while scores of 1 
+and -1 reflect significantly high and low expression respectively. 
 \section{Method}
-Below we describe the individual steps used to construct the pathway fingerprint. 
+Below we describe the individual steps used to construct the pathway 
+fingerprint. 
 \includegraphics{pp}
-Rank-normalized gene expression is mapped to pathway expression. A distribution of expression scores across the Gene Expression Omnibus (GEO is used to produce a probability of expression (POE) for each pathway. A pathprint vector is derived by transformation of the signed POE distribution into a ternary score, representing pathway activity as significantly underexpressed (-1), intermediately expressed (0), or overexpressed (+1).
+Rank-normalized gene expression is mapped to pathway expression. A distribution 
+of expression scores across the Gene Expression Omnibus (GEO is used to produce 
+a probability of expression (POE) for each pathway. A pathprint vector is 
+derived by transformation of the signed POE distribution into a ternary score, 
+representing pathway activity as significantly underexpressed (-1), 
+intermediately expressed (0), or overexpressed (+1).
 \section{Pathway sources}
-Canonical pathway gene sets were compiled from Reactome, Wikipathways, and KEGG (Kyoto Encyclopedia of Genes and Genomes), which were chosen because they include pathways relating to metabolism, signaling, cellular processes, and disease. For the major signaling pathways, experimentally derived transcriptionally upregulated and downregulated gene sets were obtained from Netpath. We have supplemented the curated pathways with non-curated sources of interactions by including highly connected modules from a functional-interaction network, termed 'static modules.' The modules cover 6,458 genes, 1,542 of which are not represented in any of the pathway databases. These static modules offer the opportunity to examine the activity of less studied or annotated biological processes, and also to compare their activity with that of the canonical pathways.
+Canonical pathway gene sets were compiled from Reactome, Wikipathways, and KEGG 
+(Kyoto Encyclopedia of Genes and Genomes), which were chosen because they 
+include pathways relating to metabolism, signaling, cellular processes, and 
+disease. For the major signaling pathways, experimentally derived 
+transcriptionally upregulated and downregulated gene sets were obtained from 
+Netpath. We have supplemented the curated pathways with non-curated sources of 
+interactions by including highly connected modules from a functional-interaction
+network, termed 'static modules.' The modules cover 6,458 genes, 1,542 of which
+are not represented in any of the pathway databases. These static modules offer
+the opportunity to examine the activity of less studied or annotated biological
+processes, and also to compare their activity with that of the canonical 
+pathways.
 
-Pathprinting: An integrative approach to understand the functional basis of disease
-Gabriel M Altschuler, Oliver Hofmann, Irina Kalatskaya, Rebecca Payne, Shannan J Ho Sui, Uma Saxena, Andrei V Krivtsov, Scott A Armstrong, Tianxi Cai, Lincoln Stein and Winston A Hide
+Pathprinting: An integrative approach to understand the functional basis of 
+disease
+Gabriel M Altschuler, Oliver Hofmann, Irina Kalatskaya, Rebecca Payne, 
+Shannan J Ho Sui, Uma Saxena, Andrei V Krivtsov, Scott A Armstrong, Tianxi Cai, 
+Lincoln Stein and Winston A Hide
 Genome Medicine (2013) 5:68
 DOI: 10.1186/gm472
 \section{Initial data processing}
-An existing GEO sample on the Human Affy ST 1.0 chip will be used as en example. The dataset \href{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE26946}{GSE26946} profiles expression data from iPS and human ES cells. The R package \verb@GEOquery@ can be used to retrieve the data. An 'exprs' object, i.e. a dataframe with row names corresponding to probe or feature IDs and column names corresponding to sample IDs is required by \verb@pathprint@. In addition, we need to know the GEO reference for the platform, in this case GPL6244, and the species, which is 'human' or "Homo sapiens' (both styles of name work).
+An existing GEO sample on the Human Affy ST 1.0 chip will be used as en example.
+The dataset \href{http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE26946}
+{GSE26946} profiles expression data from iPS and human ES cells. The R package 
+\verb@GEOquery@ can be used to retrieve the data. An 'exprs' object, i.e. a 
+dataframe with row names corresponding to probe or feature IDs and column names 
+corresponding to sample IDs is required by \verb@pathprint@. In addition, we 
+need to know the GEO reference for the platform, in this case GPL6244, and the 
+species, which is 'human' or "Homo sapiens' (both styles of name work).
 <<data>>=
 library(GEOquery)
 GSE26946 <- getGEO("GSE26946")
@@ -59,33 +109,46 @@ GSE26946.names <- as.character(phenoData(GSE26946[[1]])$title)
 @
 \section{Pathway fingerprinting}
 \subsection{Fingerprinting from new expression data}
-Now the data has been prepared, the \verb@pathprint@ function \verb@exprs2fingerprint@ can be used to produce a pathway fingerprint from this expression table.
+Now the data has been prepared, the \verb@pathprint@ function 
+\verb@exprs2fingerprint@ can be used to produce a pathway fingerprint from this 
+expression table.
 <<fingerprint>>=
 library(pathprint)
 library(SummarizedExperiment)
 library(pathprintGEOData)
 
 # load  the data
-data(compressed_result)
+data(SummarizedExperimentGEO)
 
 # load("chipframe.rda")
-ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds", "pluripotents.frame")
+ds = c("chipframe", "genesets","pathprint.Hs.gs","platform.thresholds", 
+        "pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(result)$fingerprint
-GEO.metadata.matrix = colData(result)
+GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data)
 
 GSE26946.fingerprint <- exprs2fingerprint(exprs = GSE26946.exprs,
-                                          platform = GSE26946.platform,
-                                          species = GSE26946.species,
-                                          progressBar = FALSE
-                                          )
+                                            platform = GSE26946.platform,
+                                            species = GSE26946.species,
+                                            progressBar = FALSE
+                                            )
 
 GSE26946.fingerprint[1:5, 1:3]
 @
 \subsection{Using existing data}
-The pathprint package uses the object \verb@compressed_result@, drawn from the data-package \verb@pathprintGEOData@, which was constructed in 2012 and does not contain all the GEO data. When uncompressed yields \verb@GEO.fingerprint.matrix@ and \verb@GEO.metadata.matrix@. \verb@GEO.fingerprint.matrix@ contains \Sexpr{ncol(GEO.fingerprint.matrix)} samples that have already been fingerprinted, along with their associated metadata, in the object \verb@GEO.metadata.matrix@. As the above data record is publically available from GEO it is actually already in the matrix and we can compare this to the fingerprint processed above. It should be noted that occasionally there may be discrepancies in one or two pathways due to the way in which the threshold is applied.
+The pathprint package uses the object \verb@compressed_result@, drawn from the 
+data-package \verb@pathprintGEOData@, which was constructed in 2012 and does not
+contain all the GEO data. When uncompressed yields \verb@GEO.fingerprint.matrix@
+and \verb@GEO.metadata.matrix@. \verb@GEO.fingerprint.matrix@ contains 
+\Sexpr{ncol(GEO.fingerprint.matrix)} samples that have already been 
+fingerprinted, along with their associated metadata, in the object 
+\verb@GEO.metadata.matrix@. As the above data record is publically available 
+from GEO it is actually already in the matrix and we can compare this to the 
+fingerprint processed above. It should be noted that occasionally there may be 
+discrepancies in one or two pathways due to the way in which the threshold is 
+applied.
 <<existingFingerprint>>=
 colnames(GSE26946.exprs) %in% colnames(GEO.fingerprint.matrix)
 GSE26946.existing <- GEO.fingerprint.matrix[,colnames(GSE26946.exprs)]
@@ -93,7 +156,10 @@ all.equal(GSE26946.existing, GSE26946.fingerprint)
 @
 \section{Fingerprint Analysis}
 \subsection{Intra-sample comparisons}
-The fingerprint vectors can be used to compare the differntially expressed functions within the sample set. The most straight forward method to represent this is using a heatmap, removing rows for which there is no change in functional expression.
+The fingerprint vectors can be used to compare the differntially expressed 
+functions within the sample set. The most straight forward method to represent 
+this is using a heatmap, removing rows for which there is no change in 
+functional expression.
 <<heatmap, include = FALSE>>=
 heatmap(GSE26946.fingerprint[apply(GSE26946.fingerprint, 1, sd) > 0, ],
         labCol = GSE26946.names,
@@ -106,36 +172,41 @@ heatmap(GSE26946.fingerprint[apply(GSE26946.fingerprint, 1, sd) > 0, ],
 <<heatmap>>
 @
 \end{center}
-\caption{Heatmap of GSE26946 pathway fingerprints, blue = -1, white = 0, red = +1}
+\caption{Heatmap of GSE26946 pathway fingerprints, blue = -1, white = 0,
+red = +1}
 \label{fig:heatmap}
 \end{figure}
-\subsection{Using consensusFingerprint and fingerprinDistance, comparison to pluripotent arrays}
-We can also investigate how far in functional distance, these arrays are from other pluripotent fingerprints. This can be achieved using the set of pluripotent arrays included in the package, from which a consensus fingerprint can be created.
+\subsection{Using consensusFingerprint and fingerprinDistance, comparison to 
+pluripotent arrays}
+We can also investigate how far in functional distance, these arrays are from 
+other pluripotent fingerprints. This can be achieved using the set of 
+pluripotent arrays included in the package, from which a consensus fingerprint 
+can be created.
 <<pluripotent>>=
 # construct pluripotent consensus
 pluripotent.consensus<-consensusFingerprint(
-  GEO.fingerprint.matrix[,pluripotents.frame$GSM], threshold=0.9)
+    GEO.fingerprint.matrix[,pluripotents.frame$GSM], threshold=0.9)
 
 # calculate distance from the pluripotent consensus for all arrays
 geo.pluripotentDistance<-consensusDistance(
-	pluripotent.consensus, GEO.fingerprint.matrix)
+    pluripotent.consensus, GEO.fingerprint.matrix)
 
 # calculate distance from pluripotent consensus for GSE26946 arrays
 GSE26946.pluripotentDistance<-consensusDistance(
-  pluripotent.consensus, GSE26946.fingerprint)
+    pluripotent.consensus, GSE26946.fingerprint)
 
 @
 <<histogram, include = FALSE>>=
 par(mfcol = c(2,1), mar = c(0, 4, 4, 2))
 geo.pluripotentDistance.hist<-hist(geo.pluripotentDistance[,"distance"],
-	nclass = 50, xlim = c(0,1), main = "Distance from pluripotent consensus")
+    nclass = 50, xlim = c(0,1), main = "Distance from pluripotent consensus")
 par(mar = c(7, 4, 4, 2))
 hist(geo.pluripotentDistance[pluripotents.frame$GSM, "distance"],
-	breaks = geo.pluripotentDistance.hist$breaks, xlim = c(0,1), 
-	main = "", xlab = "")
+    breaks = geo.pluripotentDistance.hist$breaks, xlim = c(0,1), 
+    main = "", xlab = "")
 hist(GSE26946.pluripotentDistance[, "distance"],
-  breaks = geo.pluripotentDistance.hist$breaks, xlim = c(0,1), 
-	main = "", col = "red", add = TRUE)
+    breaks = geo.pluripotentDistance.hist$breaks, xlim = c(0,1), 
+    main = "", col = "red", add = TRUE)
 @
 \begin{figure}
 \begin{center}
@@ -143,18 +214,26 @@ hist(GSE26946.pluripotentDistance[, "distance"],
 <<histogram>>
 @
 \end{center}
-\caption{Histogram representing the distance from the pluripotent consensus fingerprint for all GEO (above), curated pluripotent samples (below), and GSE26946 samples (below, red)}
+\caption{Histogram representing the distance from the pluripotent consensus 
+fingerprint for all GEO (above), curated pluripotent samples (below), and 
+GSE26946 samples (below, red)}
 \label{fig:histogram}
 \end{figure}
 \subsection{Identifying similar arrays}
-We can use the data contained within the GEO fingerprint matrix to order all of the GEO records according to distance from an experiment (or set of experiments, see below). This can be used, in conjunction with the metadata, to annotate a fingerprint with data from the GEO corpus. Here, we will identify experiments closely matched to the H1, embyonic stem cells within GSE26946
+We can use the data contained within the GEO fingerprint matrix to order all of
+the GEO records according to distance from an experiment (or set of experiments,
+see below). This can be used, in conjunction with the metadata, to annotate a 
+fingerprint with data from the GEO corpus. Here, we will identify experiments
+closely matched to the H1, embyonic stem cells within GSE26946
 <<distance>>=
 GSE26946.H1<-consensusFingerprint(
-  GSE26946.fingerprint[,grep("H1", GSE26946.names)], threshold=0.9)
+    GSE26946.fingerprint[,grep("H1", GSE26946.names)], threshold=0.9)
 geo.H1Distance<-consensusDistance(
-  GSE26946.H1, GEO.fingerprint.matrix)
+    GSE26946.H1, GEO.fingerprint.matrix)
 # look at top 20
-GEO.metadata.matrix[match(head(rownames(geo.H1Distance),20), rownames(GEO.metadata.matrix)),c("GSE", "GPL", "Source")]
+GEO.metadata.matrix[match(head(rownames(geo.H1Distance),20), 
+                        rownames(GEO.metadata.matrix)),
+                    c("GSE", "GPL", "Source")]
 @
 
 \end{document}

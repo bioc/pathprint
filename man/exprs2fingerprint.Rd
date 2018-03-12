@@ -6,53 +6,62 @@
 \title{
 Create a pathway fingerprint from a gene expression table.}
 \description{
-The function converts the gene expression values to a ternary matrix of pathway expression values,
- (-1,0,1) corresponding to (low, background, high).
- This is based on applying a pre-calculated threshold to pathway enrichment scores.
+The function converts the gene expression values to a ternary matrix of pathway 
+expression values, (-1,0,1) corresponding to (low, background, high).
+This is based on applying a pre-calculated threshold to pathway enrichment 
+scores.
 }
 \usage{
 exprs2fingerprint(exprs, platform, species, progressBar = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{exprs}{
+    \item{exprs}{
 matrix containing a probe expression table, can be one or more columns
 }
-  \item{platform}{
+    \item{platform}{
 microarray platform GEO ID
 }
-  \item{species}{
+    \item{species}{
 character string to define the species of the experiment, see details.
 }
-  \item{progressBar}{
+    \item{progressBar}{
 logical. If TRUE, a progress bar is displayed while the script is running
 }
 }
 \details{
-exprs should be a matrix or dataframe of the expression values, with rownames containing probe names and colnames the experiment IDs.
- Platforms should be of the type listed in GEO (e.g. "GPL570"). Species can be full latin names
-\cr "Homo sapiens", "Mus musculus", "Rattus norvegicus", "Danio rerio", "Drosophila melanogaster",
- "Caenorhabditis elegans".
+exprs should be a matrix or dataframe of the expression values, with rownames 
+containing probe names and colnames the experiment IDs. Platforms should be of 
+the type listed in GEO (e.g. "GPL570"). Species can be full latin names
+\cr "Homo sapiens", "Mus musculus", "Rattus norvegicus", "Danio rerio", 
+"Drosophila melanogaster", "Caenorhabditis elegans".
 \cr or corresponding common-use names
 \cr "human",  "mouse", "rat", "zebrafish", "drosophila", "C.elegans".
-\cr The array is first annotated with Entrez Gene IDs using annotations contained in \code{\link{chipframe}}.
- Pathway expression scores are calculated by the mean-squared rank of the gene expression and
- normalized against the appropriate distribution for the given platform in the GEO corpus.
- There is a progressBar to track the script, can be set to FALSE for (possibly) marginally faster running
+\cr The array is first annotated with Entrez Gene IDs using annotations 
+contained in \code{\link{chipframe}}.
+Pathway expression scores are calculated by the mean-squared rank of the gene 
+expression and normalized against the appropriate distribution for the given 
+platform in the GEO corpus. There is a progressBar to track the script, can be 
+set to FALSE for (possibly) marginally faster running
 }
 \value{
-Returns a dataframe containing the pathway fingerprint for each of column in the expression table.
- Rownames correspond to pathways and colnames to the experiment IDs.
+Returns a dataframe containing the pathway fingerprint for each of column in 
+the expression table. Rownames correspond to pathways and colnames to the 
+experiment IDs.
 }
 \references{
-Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena,
+A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). 
+"Pathprinting: An integrative approach to understand the functional basis of 
+disease." Genome Med 5(7): 68.
 }
 \author{
 Gabriel Altschuler
 }
 \seealso{
-\code{\link{consensusFingerprint}}, \code{\link{single.chip.enrichment}}, \code{\link{customCDFAnn}},
- \code{\link{thresholdFingerprint}}
+\code{\link{consensusFingerprint}}, \code{\link{single.chip.enrichment}}, 
+\code{\link{customCDFAnn}},
+\code{\link{thresholdFingerprint}}
 }
 \examples{
 require(pathprintGEOData)
@@ -64,15 +73,15 @@ annotation(ALL)
 library(SummarizedExperiment)
 
 # load  the data
-data(compressed_result)
+data(SummarizedExperimentGEO)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pluripotents.frame")
+    "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(result)$fingerprint
-GEO.metadata.matrix = colData(result)
+GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data)
 
 # The chip used was the Affymetrix Human Genome U95 Version 2 Array
 # The correspending GEO ID is GPL8300
@@ -83,7 +92,7 @@ ALL.First5.fingerprint<-exprs2fingerprint(exprs = ALL[1:5],
     species = "human",
     progressBar = TRUE
 )
-head(ALL.First5.fingerprint)								   
+head(ALL.First5.fingerprint)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

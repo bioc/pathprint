@@ -5,7 +5,8 @@
 Pathprint genesets - H. sapiens
 }
 \description{
-Pathways and genesets used by pathprint for \emph{H.sapiens} arrays, referenced by Entrez Gene ID
+Pathways and genesets used by pathprint for \emph{H.sapiens} arrays, referenced 
+by Entrez Gene ID
 }
 \usage{pathprint.Hs.gs}
 
@@ -14,7 +15,10 @@ O. Hofmann
 }
 
 \references{
-Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena,
+A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). 
+"Pathprinting: An integrative approach to understand the functional basis of 
+disease." Genome Med 5(7): 68.
 }
 \examples{
 data("pathprint.Hs.gs")

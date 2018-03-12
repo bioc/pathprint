@@ -5,7 +5,8 @@
 Map probes to Entrez Gene IDs
 }
 \description{
-Annotates an expression array with entrez gene IDs, averaging to resolve redundancies
+Annotates an expression array with entrez gene IDs, averaging to resolve 
+redundancies
 
 }
 \usage{
@@ -13,22 +14,26 @@ customCDFAnn(data, ann)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{
+    \item{data}{
 expression dataframe
 }
-  \item{ann}{
+    \item{ann}{
 annotation dataframe
 }
 }
 \details{
-Maps array probes to a unique list of Entrez Gene IDs. Rhe mean expression value is used for mutiple probes mapping to the same gene. 
+Maps array probes to a unique list of Entrez Gene IDs. Rhe mean expression value
+is used for mutiple probes mapping to the same gene. 
 }
 \value{
-Returns a dataframe with a column for each column of the input data and rownames as unique entrez IDs.
- 
+Returns a dataframe with a column for each column of the input data and rownames
+as unique entrez IDs.
 }
 \references{
-Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena, A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). "Pathprinting: An integrative approach to understand the functional basis of disease." Genome Med 5(7): 68.
+Altschuler, G. M., O. Hofmann, I. Kalatskaya, R. Payne, S. J. Ho Sui, U. Saxena,
+A. V. Krivtsov, S. A. Armstrong, T. Cai, L. Stein and W. A. Hide (2013). 
+"Pathprinting: An integrative approach to understand the functional basis of 
+disease." Genome Med 5(7): 68.
 }
 \author{
 Gabriel Altschuler
@@ -46,15 +51,15 @@ annotation(ALL)
 library(SummarizedExperiment)
 
 # load  the data
-data(compressed_result)
+data(SummarizedExperimentGEO)
 
 ds = c("chipframe", "genesets","pathprint.Hs.gs",
-  "platform.thresholds","pluripotents.frame")
+    "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(result)$fingerprint
-GEO.metadata.matrix = colData(result)
+GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data)
 
 # The chip used was the Affymetrix Human Genome U95 Version 2 Array
 # The correspending GEO ID is GPL8300

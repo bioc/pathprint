@@ -1,6 +1,7 @@
 **************************************************
-*            pathprint 1.5.1 NEWS                *
+*            pathprint 2.0.0 NEWS                *
 **************************************************
+- Updated to pathprint 2.0.0 on the 16th of April 2018. GEO data coverage increased by 205,255 GSMs. 
 
 - Added to the Bioconductor for the first time in April 2017
 

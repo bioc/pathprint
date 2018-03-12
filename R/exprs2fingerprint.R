@@ -12,10 +12,10 @@ function(exprs, platform, species, progressBar = TRUE)
 # Platforms should be of the type listed in GEO (e.g. "GPL570").
 # Species can be "mouse" or "human"
 # Updated for v0.3
-  {
-	if(class(exprs) == "ExpressionSet"){
-    		exprs = exprs(exprs)
-	}
+{
+    if(class(exprs) == "ExpressionSet"){
+            exprs = exprs(exprs)
+    }
 
 #######
 # Load data and check parameters
@@ -27,21 +27,22 @@ function(exprs, platform, species, progressBar = TRUE)
 #      data(chipframe)
 #    }
 # check platform is compatible
-	if (!(platform %in% names(chipframe))) stop("Platform name is invalid or not currently supported")
+    if (!(platform %in% names(chipframe))) 
+        stop("Platform name is invalid or not currently supported")
 
 # Load pathway gene sets and check species
 
-#	 if (!(exists("genesets")))
-#	 { 	
+#    if (!(exists("genesets")))
+#    { 
 #      data(genesets)
 #    }
-	if (!(species %in% names(genesets))) stop("Species name invalid or not supported")
-#	data(list = genesets[species])
-	gsdb <- get(genesets[species]) 
-	
-	
-#########							
-# Run pathway enrichment	
+    if (!(species %in% names(genesets))) 
+        stop("Species name invalid or not supported")
+#   data(list = genesets[species])
+    gsdb <- get(genesets[species]) 
+
+#########
+# Run pathway enrichment
 #########
 
     print("Running fingerprint")
@@ -50,24 +51,24 @@ function(exprs, platform, species, progressBar = TRUE)
     geo.ann <- customCDFAnn(exprs, chipframe[[platform]]$ann)
     
 # Use SCE to calculate a score for each pathway based on the mean or median
-		
-	SCE <- single.chip.enrichment( 
-   			exprs = geo.ann,
-  			geneset = gsdb,
-			transformation = "squared.rank",
-			statistic = "mean",
-			normalizedScore = FALSE,
-			progressBar = progressBar
-   			)
 
-#########							
-# Threshold according to GEO corpus background 	
-#########   			
+SCE <- single.chip.enrichment( 
+            exprs = geo.ann,
+            geneset = gsdb,
+            transformation = "squared.rank",
+            statistic = "mean",
+            normalizedScore = FALSE,
+            progressBar = progressBar
+            )
 
-	SCE.threshold<-thresholdFingerprint(SCE = SCE, platform = platform)
-	
+#########
+# Threshold according to GEO corpus background 
+#########  
+
+    SCE.threshold<-thresholdFingerprint(SCE = SCE, platform = platform)
+
     return(SCE.threshold)
 
 # End exprs2fingerprint
-  }
+}
 
