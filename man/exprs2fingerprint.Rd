@@ -38,7 +38,7 @@ the type listed in GEO (e.g. "GPL570"). Species can be full latin names
 \cr or corresponding common-use names
 \cr "human",  "mouse", "rat", "zebrafish", "drosophila", "C.elegans".
 \cr The array is first annotated with Entrez Gene IDs using annotations 
-contained in \code{\link{chipframe}}.
+contained in the pathprintGEOData package.
 Pathway expression scores are calculated by the mean-squared rank of the gene 
 expression and normalized against the appropriate distribution for the given 
 platform in the GEO corpus. There is a progressBar to track the script, can be 

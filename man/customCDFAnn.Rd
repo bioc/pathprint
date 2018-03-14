@@ -39,7 +39,7 @@ disease." Genome Med 5(7): 68.
 Gabriel Altschuler
 }
 \seealso{
-\code{\link{chipframe}}, \code{\link{single.chip.enrichment}}
+\code{\link{single.chip.enrichment}}
 }
 \examples{
 require(pathprintGEOData)
