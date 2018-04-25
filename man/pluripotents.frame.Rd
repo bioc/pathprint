@@ -46,6 +46,9 @@ data(list = ds)
 GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
 GEO.metadata.matrix = colData(geo_sum_data)
 
+# free up space by removing the geo_sum_data object
+remove(geo_sum_data)
+
 head(pluripotents.frame)
 
 # Use pathway fingerprints to search for

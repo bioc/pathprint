@@ -61,6 +61,9 @@ data(list = ds)
 GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
 GEO.metadata.matrix = colData(geo_sum_data)
 
+# free up space by removing the geo_sum_data object
+remove(geo_sum_data)
+
 # The chip used was the Affymetrix Human Genome U95 Version 2 Array
 # The correspending GEO ID is GPL8300
 

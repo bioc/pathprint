@@ -56,6 +56,10 @@ data(list = ds)
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
 GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
 GEO.metadata.matrix = colData(geo_sum_data)
+
+# free up space by removing the geo_sum_data object
+remove(geo_sum_data)
+
 # search for pluripotent arrays
 # load fingerprint matrix and pluripotent reference
 
