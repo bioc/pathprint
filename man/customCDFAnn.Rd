@@ -58,8 +58,8 @@ ds = c("chipframe", "genesets","pathprint.Hs.gs",
 data(list = ds)
 
 # extract GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
-GEO.metadata.matrix = colData(geo_sum_data)
+GEO.fingerprint.matrix = assays(geo_sum_data[,1:200000])$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
 
 # free up space by removing the geo_sum_data object
 remove(geo_sum_data)
