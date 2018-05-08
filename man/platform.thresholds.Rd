@@ -24,9 +24,10 @@ library(SummarizedExperiment)
 data(SummarizedExperimentGEO)
 data("platform.thresholds")
 
-# extract GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(geo_sum_data)$fingerprint
-GEO.metadata.matrix = colData(geo_sum_data)
+# extract part of the GEO.fingerprint.matrix and GEO.metadata.matrix
+GEO.fingerprint.matrix = assays(geo_sum_data[,1:200000])$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
+
 head(platform.thresholds[[1]])
 }
 

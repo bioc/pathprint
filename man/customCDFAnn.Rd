@@ -57,7 +57,7 @@ ds = c("chipframe", "genesets","pathprint.Hs.gs",
     "platform.thresholds","pluripotents.frame")
 data(list = ds)
 
-# extract GEO.fingerprint.matrix and GEO.metadata.matrix
+# extract part of the GEO.fingerprint.matrix and GEO.metadata.matrix
 GEO.fingerprint.matrix = assays(geo_sum_data[,1:200000])$fingerprint
 GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
 
