@@ -60,12 +60,15 @@ GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
 # free up space by removing the geo_sum_data object
 remove(geo_sum_data)
 
+# Extract common GSMs since we only loaded part of the geo_sum_data object
+common_GSMs <- intersect(pluripotents.frame$GSM,colnames(GEO.fingerprint.matrix))
+
 # search for pluripotent arrays
 # load fingerprint matrix and pluripotent reference
 
 # create consensus fingerprint
 pluripotent.consensus<-consensusFingerprint(
-    GEO.fingerprint.matrix[,pluripotents.frame$GSM], threshold=0.9)
+    GEO.fingerprint.matrix[,common_GSMs], threshold=0.9)
 
 # calculate distance from the pluripotent consensus
 geo.pluripotentDistance<-consensusDistance(pluripotent.consensus,
@@ -79,15 +82,5 @@ par(mar = c(7, 4, 4, 2))
 hist(geo.pluripotentDistance[pluripotents.frame$GSM, "distance"],
     breaks = geo.pluripotentDistance.hist$breaks, xlim = c(0,1), 
     main = "", xlab = "above: all GEO, below: curated pluripotent samples")
-
-# annotate top 100 matches not in original seed with metadata
-geo.pluripotentDistance.noSeed<-geo.pluripotentDistance[
-    !(rownames(geo.pluripotentDistance) \%in\% pluripotents.frame$GSM),]
-
-top.noSeed.meta<-GEO.metadata.matrix[
-    match(head(rownames(geo.pluripotentDistance.noSeed), 1000),
-    GEO.metadata.matrix$GSM),]
-    
-# head(top.noSeed.meta[,c("GSM", "GPL", "Source")],10)
 }
 

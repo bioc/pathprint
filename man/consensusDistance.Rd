@@ -65,10 +65,13 @@ GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
 # free up space by removing the geo_sum_data object
 remove(geo_sum_data)
 
+# Extract common GSMs since we only loaded part of the geo_sum_data object
+common_GSMs <- intersect(pluripotents.frame$GSM,colnames(GEO.fingerprint.matrix))
+
 # search for pluripotent arrays
 # create consensus fingerprint for pluripotent samples
 pluripotent.consensus<-consensusFingerprint(
-    GEO.fingerprint.matrix[,pluripotents.frame$GSM], threshold=0.9)
+    GEO.fingerprint.matrix[,common_GSMs], threshold=0.9)
 
 # calculate distance from the pluripotent consensus
 geo.pluripotentDistance<-consensusDistance(
