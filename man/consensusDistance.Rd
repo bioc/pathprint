@@ -59,8 +59,8 @@ ds = c("chipframe", "genesets",
 data(list = ds)
 
 # extract part of the GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(geo_sum_data[,1:200000])$fingerprint
-GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
+GEO.fingerprint.matrix = assays(geo_sum_data[,300000:350000])$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data[,300000:350000])
 
 # free up space by removing the geo_sum_data object
 remove(geo_sum_data)

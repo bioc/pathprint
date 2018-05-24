@@ -43,8 +43,8 @@ ds = c("chipframe", "genesets","pathprint.Hs.gs",
 data(list = ds)
 
 # extract part of the GEO.fingerprint.matrix and GEO.metadata.matrix
-GEO.fingerprint.matrix = assays(geo_sum_data[,1:200000])$fingerprint
-GEO.metadata.matrix = colData(geo_sum_data[,1:200000])
+GEO.fingerprint.matrix = assays(geo_sum_data[,300000:350000])$fingerprint
+GEO.metadata.matrix = colData(geo_sum_data[,300000:350000])
 
 # Extract common GSMs since we only loaded part of the geo_sum_data object
 common_GSMs <- intersect(pluripotents.frame$GSM,colnames(GEO.fingerprint.matrix))
